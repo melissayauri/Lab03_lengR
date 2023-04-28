@@ -119,12 +119,13 @@ ggplot(tabla_frecuencia, aes(x = Method, y = code, fill = Freq)) +
 
 ########Pregunta 5
 
+
 http_data_filtered <- http_data[, c("Method", "Response_code", "Protocol")]
 
 epa_http_one_hot <- one_hot(as.data.table(http_data_filtered), sparsifyNAs = TRUE)
 
-epa_http_one_hot$Resource_size <- nchar(http_data$Resource)
-epa_http_one_hot$Bytes <- http_data$Bytes
+http_data$Resource_size <- nchar(http_data$Resource)
+
 
 View(epa_http_one_hot)
 
@@ -134,10 +135,10 @@ results3 <- kmeans(epa_http_one_hot, centers = 3)
 
 # Pregunta 6
 
-grap1 <- plot(x = epa_http_one_hot$Bytes, y = epa_http_one_hot$Resource_size, col = results2$cluster, main="GRafico con 2")
+grap1 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = results2$cluster, main="GRafico con 2")
 grap1
 
-grap2 <- plot(x = epa_http_one_hot$Bytes, y = epa_http_one_hot$Resource_size, col = results3$cluster, main="GRafico con 3")
+grap2 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = results3$cluster, main="GRafico con 3")
 grap2
 #termino
 
