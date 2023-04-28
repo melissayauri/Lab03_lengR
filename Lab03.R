@@ -126,20 +126,27 @@ epa_http_one_hot <- one_hot(as.data.table(http_data_filtered), sparsifyNAs = TRU
 
 http_data$Resource_size <- nchar(http_data$Resource)
 
+# Agrupamiento de 4 y 3
 
-View(epa_http_one_hot)
+results2 <- kmeans(epa_http_one_hot, centers = 4)
 
-results2 <- kmeans(epa_http_one_hot, centers = 2)
-View(results2)
 results3 <- kmeans(epa_http_one_hot, centers = 3)
 
 # Pregunta 6
 
-grap1 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = results2$cluster, main="GRafico con 2")
+# Gráficas en base a la columna bytes y Resource_size segun el tipo de agrupamiento
+colores2 <- rainbow(n = length(unique(results2$cluster)))
+grap1 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = colores2[results2$cluster], main="GRafico con 2")
 grap1
+# Creando leyenda
+legend("topright", legend = levels(factor(results2$cluster)), col = colores2, pch = 16)
 
-grap2 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = results3$cluster, main="GRafico con 3")
+colores3 <- rainbow(n = length(unique(results3$cluster)))
+grap2 <- plot(x = http_data$Bytes, y = http_data$Resource_size, col = colores3[results3$cluster], main="GRafico con 3")
 grap2
+# Creando leyenda
+legend("topright", legend = levels(factor(results3$cluster)), col = colores3, pch = 16)
+
 #termino
 
 
