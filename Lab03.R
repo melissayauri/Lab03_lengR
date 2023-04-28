@@ -71,6 +71,9 @@ code501_users
 freq_http <- table(http_data$Method)
 method_data <- data.frame(http = names(freq_http), freq_http = as.vector(freq_http))
 View(method_data)
+# "GET     46020
+# "HEAD       106
+# "POST      1622
 
 # Hallando la frecuencia de la columna http, filtrando previamente los recursos tipo imagen
 different_image_data <- http_data %>%
@@ -80,7 +83,10 @@ View(different_image_data)
 freq_http2 <- table(different_image_data$Method)
 method2_data <- data.frame(http = names(freq_http2), freq_http2 = as.vector(freq_http2))
 View(method2_data)
-
+#  http freq_http
+#  "GET     46020
+# "HEAD       106
+# "POST      1622
 
 ### Pregunta 4
 # Eligan el grafico que les convenga
