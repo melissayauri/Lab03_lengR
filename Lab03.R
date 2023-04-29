@@ -90,38 +90,27 @@ View(method2_data)
 
 ### Pregunta 4
 # Eligan el grafico que les convenga
-tabla_frecuencia <- as.data.frame(table(http_data$Method, http_data$Response_code))
-colnames(tabla_frecuencia) <- c("Method", "code", "Freq")
-View(tabla_frecuencia)
+tabla_frecuencia <-table(http_data$Response_code)
+response_code_table <- data.frame(Response_code = names(tabla_frecuencia), 
+                          Frecuencia = as.vector(tabla_frecuencia))
 
 
-ggplot(tabla_frecuencia, aes(x = code, y = Freq, fill = Method)) +
-  geom_bar(stat = "identity")+
-labs(title = "Graph 1")
-ggplot(tabla_frecuencia, aes(x = code, y = Freq, fill = Method)) +
-  geom_bar(stat = "identity", position = "dodge")+
-  labs(title = "Graph 2")
+ggplot(response_code_table, aes(x = Response_code, y = Frecuencia)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Gráfico 2 de Respuesta de Código",
+       x = "Código de respuesta",
+       y = "Frecuencia")
 
-ggplot(tabla_frecuencia, aes(x = code, y = Freq, color = Method)) +
-  geom_line() +
-  geom_point() +
-labs(title = "Graph 3")
-
-
-
-
-ggplot(tabla_frecuencia, aes(x = "", y = Freq, fill = Method)) +
-  geom_bar(stat = "identity", color = "white", width = 1) +
-  coord_polar(theta = "y") +
-  theme_void() +
-  labs(title = "5.Distribución de peticiones por método", fill = "Method") +
-  geom_text(aes(label = Freq), position = position_stack(vjust = 0.5))
+ggplot(response_code_table, aes(x = "", y = Frecuencia, fill = Response_code)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  labs(title = "Gráfico 3 de Respuesta de Código",
+       fill = "Código de respuesta") +
+  theme_void()
 
 
-ggplot(tabla_frecuencia, aes(x = Method, y = code, fill = Freq)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "blue") +
-  labs(title = "6.Distribución de peticiones por método y código de respuesta")
+
+
 
 ########Pregunta 5
 
