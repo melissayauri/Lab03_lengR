@@ -36,33 +36,25 @@ directions_data <- filter(concurrences, Freq > 0)
 
 directions_data <- directions_data %>%
   arrange(Response_code)
-
+View(directions_data)
 unique_codes <- unique(directions_data$Response_code)
 # 200, 302, 304, 400, 403, 404, 500, 501
-
-# Filtrar y guardar en diferentes tablas
 for (code in unique_codes) {
   filtered_table <- filter(directions_data, Response_code == code)
-  assign(paste0("table_code_", code), filtered_table)
+  assign(paste0("code_", code), filtered_table)
+  
+  
 }
-
 # Hallando usuarios según el código de respuesta de la petición
-code200_users <- nrow(table_code_200)
-code200_users
-code302_users <- nrow(table_code_302)
-code302_users
-code304_users <- nrow(table_code_304)
-code304_users
-code400_users <- nrow(table_code_400)
-code400_users
-code403_users <- nrow(table_code_403)
-code403_users
-code404_users <- nrow(table_code_404)
-code404_users
-code500_users <- nrow(table_code_500)
-code500_users
-code501_users <- nrow(table_code_501)
-code501_users
+nrow(code_200)
+nrow(code_302)
+nrow(code_304)
+nrow(code_400)
+nrow(code_403)
+nrow(code_404)
+nrow(code_500)
+nrow(code_501)
+
 
 ####### Pregunta 3
 
