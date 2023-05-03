@@ -1,0 +1,46 @@
+---
+title: "lab03"
+output:
+  pdf_document: default
+   latex_engine: xelatex
+  html_document: default
+date: "2023-05-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Práctica 3
+
+# Pregunta 1
+
+```{r question1, echo=}
+# Importando el archivo
+http_data <- read_table("D:\\MAESTRIA-CIBERSEGURIDAD\\SEMINARIO_DATA_SCIENCE\\LABS\\Lab03_lengR\\epa-http.csv", col_names = FALSE)
+# Renonbrando los encabezados de las columnas
+colnames(http_data) <- c("Directions", "Date", "Method", "Resource", "Protocol", "Response_code", "Bytes")
+
+###########Pregunta 1
+# Conversiones
+http_data$Method <- as.factor(http_data$Method)
+http_data$Protocol <- as.factor(http_data$Protocol)
+http_data$Response_code <- as.factor(http_data$Response_code)
+http_data$Bytes <- as.numeric(http_data$Bytes)
+#http_data$Resource <- as.factor(http_data$Resource)
+# Conversión de los valores NA por 0
+
+http_data$Bytes <- ifelse(is.na(http_data$Bytes), 0, http_data$Bytes)
+nrow(http_data)
+View(http_data)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
