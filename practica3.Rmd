@@ -159,6 +159,7 @@ La interpretación de cada gráfica es en base a la cantidad de puntos según el
 # Solo para que los resultados sean reproducibles y no aleatorios
 set.seed(123) # si no se coloca la grafica cambia en cada ejecución
 
+
 ## Gráfica con cluster 4
 # Solo usar si quieres colores aleatorios
 #colores2 <- rainbow(n = length(unique(results2$cluster)))
